@@ -8,10 +8,10 @@
     <title>MiniChat</title>
 </head>
 <body class="container">
-    <h1 class="mt-5">MiniChat</h1>
+    <h1 class="mt-5">Acceso denegado</h1>
     <hr/>
 
-    <form id="chatForm">
+    <!-- <form id="chatForm">
         <div class="row">
             <div class="col-8">
                 <input type='text' class='form-control' id='txtMessage' placeholder="Message" />
@@ -25,36 +25,47 @@
         <div class="row">
             <div class="col">
                 <ul id="chatMessages" class="mt-2">
-                    <!-- <li>Hola</li>
+                     <li>Hola</li>
                     <li>mundo</li>
                     <li>souglas</li>
-                    <li>otra cosa</li> -->
+                    <li>otra cosa</li>
                 </ul>
             </div>
         </div>
-    </form>
+    </form> -->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js" integrity="sha512-/xb5+PNOA079FJkngKI2jvID5lyiqdHXaUUcfmzE0X0BdpkgzIWHC59LOG90a2jDcOyRsd1luOr24UCCAG8NNw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        const socket = io('https://react-socket-server-dou.herokuapp.com/');
+        const socket = io('http://localhost:8080');
+
+        //Para emitir
+        // socket.emit('message-to-server', { data });
+        // socket.on('connect', () => {
+        //     console.log('Connect!!!');
+        // });
+
+        // Para escuchar
+        socket.on('message-from-server', (data) => {
+            // callback
+        });
 
         // referencias al DOM;
-        const formRef = document.querySelector('#chatForm');
-        const chatMessagesRef = document.querySelector('#chatMessages');
-        const txtMessagesRef = document.querySelector('#txtMessage');
+        // const formRef = document.querySelector('#chatForm');
+        // const chatMessagesRef = document.querySelector('#chatMessages');
+        // const txtMessagesRef = document.querySelector('#txtMessage');
 
-        formRef.addEventListener('submit', (event) => {
-            event.preventDefault();
+        // formRef.addEventListener('submit', (event) => {
+        //     event.preventDefault();
             
-            const newMessage = txtMessagesRef.value;
+        //     const newMessage = txtMessagesRef.value;
             
-            socket.emit('message-to-server', { text: newMessage });
+        //     socket.emit('message-to-server', { text: newMessage });
 
-        });
+        // });
                 
-        socket.on('message-from-server', (data) => {
-            chatMessagesRef.innerHTML += `<li>${data.text}</li>`;
-        });
+        // socket.on('message-from-server', (data) => {
+        //     chatMessagesRef.innerHTML += `<li>${data.text}</li>`;
+        // });
 
         // socket.on('welcome-message', (data) => {
         //     // El cliente escucha el mensaje
